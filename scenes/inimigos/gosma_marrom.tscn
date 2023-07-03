@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/inimigos/gosma_marrom.gd" type="Script" id=1]
+[ext_resource path="res://sprites/inimigos/gosma_fase1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/efeitos_jogo/textures/256/spotlight_6.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.81287, 5.46368 )
+
+[sub_resource type="Animation" id=2]
+length = 1.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.678431 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 11.6421, 7.59486 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 6, 1.9375 )
+
+[node name="gorma_marrom" type="KinematicBody2D"]
+position = Vector2( 99, 40 )
+z_index = 5
+collision_layer = 2
+collision_mask = 361
+script = ExtResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 2 )
+hframes = 10
+region_rect = Rect2( 0, 0, 20, 32 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 32
+position = Vector2( -0.292481, 6.39281 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.574524, 0.928074 )
+scale = Vector2( 0.535961, 0.429895 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/gosma_andando = SubResource( 2 )
+anims/planeta_rosa = SubResource( 3 )
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2( -7.71693, 2.66585 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 64
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="."]
+position = Vector2( 7.43631, 1.96431 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 64
+
+[node name="PlatformDetector" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="colidir_com_player" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="colidir_com_player"]
+position = Vector2( -0.445946, 7.58119 )
+shape = SubResource( 4 )
+
+[node name="pisar_no_inimigo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pisar_no_inimigo"]
+position = Vector2( 0.0625, -2.875 )
+shape = SubResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -1, 3.5 )
+scale = Vector2( 0.598958, 0.481771 )
+texture = ExtResource( 3 )
+texture_scale = 0.3
+color = Color( 0.85098, 0.372549, 0.145098, 1 )
+energy = 2.28
+
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="body_entered" from="colidir_com_player" to="." method="_on_colidir_com_player_body_entered"]
+[connection signal="body_entered" from="pisar_no_inimigo" to="." method="pisar_no_inimigo"]

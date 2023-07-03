@@ -1,0 +1,1586 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://sprites/menu_fases_itens/backgroundmenuoption1.png" type="Texture" id=1]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal5.png" type="Texture" id=2]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/Com_sinal.png" type="Texture" id=3]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/Com_sinal_pressed.png" type="Texture" id=4]
+[ext_resource path="res://fonts/BebasNeue-Regular.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://sprites/menu_fases_itens/novo botao.png" type="Texture" id=6]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal4.png" type="Texture" id=7]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal6.png" type="Texture" id=8]
+[ext_resource path="res://scripts/hud/menu_option.gd" type="Script" id=9]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal1.png" type="Texture" id=10]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal8.png" type="Texture" id=11]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal10.png" type="Texture" id=12]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal2.png" type="Texture" id=13]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal7.png" type="Texture" id=14]
+[ext_resource path="res://sprites/menu_fases_itens/button_pressed.png" type="Texture" id=15]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal3.png" type="Texture" id=16]
+[ext_resource path="res://scenes/efeitos/scene_transition.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scripts/hud/button_lock.gd" type="Script" id=18]
+[ext_resource path="res://sprites/menu_fases_itens/tv_sem_sinal/tv_sem_sinal9.png" type="Texture" id=19]
+[ext_resource path="res://sprites/menu_fases_itens/button_hover.png" type="Texture" id=20]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor5.png" type="Texture" id=21]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor1.png" type="Texture" id=22]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor4.png" type="Texture" id=23]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor7.png" type="Texture" id=24]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor2.png" type="Texture" id=25]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor3.png" type="Texture" id=26]
+[ext_resource path="res://sprites/menu_fases_itens/tv_expositor/tv_expositor6.png" type="Texture" id=27]
+[ext_resource path="res://sprites/menu_fases_itens/background_loja.png" type="Texture" id=29]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 27 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+func _ready():
+	$Label.text = str(saver.bestmoedas)
+	pass
+"
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_color = Color( 0.992157, 0.992157, 0.992157, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 19 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=7]
+size = 12
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 12
+font_data = ExtResource( 5 )
+
+[node name="menu_option" type="Node"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 1350.06 ],
+"_edit_vertical_guides_": [ 255.713, 512.0 ]
+}
+
+[node name="fundopreto" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.694118 )
+position = Vector2( 260.148, 121.055 )
+scale = Vector2( 0.665602, 0.142737 )
+z_index = 1
+texture = ExtResource( 29 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tv_grande" type="AnimatedSprite" parent="."]
+position = Vector2( 438.708, 106.105 )
+scale = Vector2( 0.127885, 0.113514 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="tv_grande2" type="AnimatedSprite" parent="."]
+position = Vector2( 74.9652, 106.057 )
+scale = Vector2( 0.127504, 0.114257 )
+frames = SubResource( 1 )
+frame = 6
+playing = true
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="score" type="Node2D" parent="hud"]
+visible = false
+position = Vector2( 77.2989, -25.0901 )
+script = SubResource( 2 )
+
+[node name="Label" type="Label" parent="hud/score"]
+visible = false
+margin_left = -11.1247
+margin_top = -12.6548
+margin_right = 28.8753
+margin_bottom = 26.3452
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scene_transition" parent="hud" instance=ExtResource( 17 )]
+margin_left = -1.52588e-05
+margin_right = -1.52588e-05
+
+[node name="labels" type="Node2D" parent="hud"]
+position = Vector2( -36.2646, -76.9716 )
+scale = Vector2( 0.9, 0.9 )
+z_index = 1
+
+[node name="tutorial2" type="Label" parent="hud/labels"]
+visible = false
+margin_left = 82.0991
+margin_top = 98.4313
+margin_right = 106.099
+margin_bottom = 109.431
+custom_fonts/font = SubResource( 4 )
+text = "locked"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label1" type="Label" parent="hud/labels"]
+margin_left = 92.8794
+margin_top = 142.298
+margin_right = 109.879
+margin_bottom = 162.298
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="hud/labels"]
+margin_left = 146.125
+margin_top = 142.072
+margin_right = 158.125
+margin_bottom = 162.072
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="hud/labels"]
+margin_left = 198.175
+margin_top = 142.191
+margin_right = 207.175
+margin_bottom = 162.191
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="hud/labels"]
+margin_left = 239.7
+margin_top = 142.205
+margin_right = 263.7
+margin_bottom = 162.205
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="hud/labels"]
+margin_left = 296.967
+margin_top = 142.267
+margin_right = 305.967
+margin_bottom = 162.267
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "4"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="hud/labels"]
+margin_left = 348.06
+margin_top = 142.424
+margin_right = 357.06
+margin_bottom = 162.424
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="hud/labels"]
+margin_left = 393.644
+margin_top = 142.426
+margin_right = 409.644
+margin_bottom = 162.426
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="hud/labels"]
+margin_left = 440.412
+margin_top = 140.921
+margin_right = 464.412
+margin_bottom = 160.921
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="hud/labels"]
+margin_left = 495.886
+margin_top = 142.248
+margin_right = 508.885
+margin_bottom = 162.248
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "7"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label10" type="Label" parent="hud/labels"]
+margin_left = 546.158
+margin_top = 142.252
+margin_right = 558.158
+margin_bottom = 162.252
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "8"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label11" type="Label" parent="hud/labels"]
+margin_left = 97.0118
+margin_top = 192.444
+margin_right = 109.011
+margin_bottom = 212.444
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label12" type="Label" parent="hud/labels"]
+margin_left = 141.162
+margin_top = 192.877
+margin_right = 165.162
+margin_bottom = 212.877
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label13" type="Label" parent="hud/labels"]
+margin_left = 195.33
+margin_top = 192.87
+margin_right = 207.33
+margin_bottom = 212.87
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label14" type="Label" parent="hud/labels"]
+margin_left = 244.963
+margin_top = 192.465
+margin_right = 256.963
+margin_bottom = 212.465
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "11"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label15" type="Label" parent="hud/labels"]
+margin_left = 294.882
+margin_top = 193.278
+margin_right = 306.882
+margin_bottom = 213.278
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "12"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label16" type="Label" parent="hud/labels"]
+margin_left = 339.821
+margin_top = 193.198
+margin_right = 363.821
+margin_bottom = 213.198
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label17" type="Label" parent="hud/labels"]
+margin_left = 394.918
+margin_top = 192.781
+margin_right = 406.918
+margin_bottom = 212.781
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "13"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label18" type="Label" parent="hud/labels"]
+margin_left = 445.318
+margin_top = 193.098
+margin_right = 457.318
+margin_bottom = 213.098
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "14"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label19" type="Label" parent="hud/labels"]
+margin_left = 495.089
+margin_top = 192.589
+margin_right = 507.089
+margin_bottom = 212.589
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "15"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label20" type="Label" parent="hud/labels"]
+margin_left = 540.118
+margin_top = 192.543
+margin_right = 564.119
+margin_bottom = 212.543
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label21" type="Label" parent="hud/labels"]
+margin_left = 94.6749
+margin_top = 242.015
+margin_right = 106.675
+margin_bottom = 262.015
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "16"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label22" type="Label" parent="hud/labels"]
+margin_left = 145.269
+margin_top = 243.232
+margin_right = 157.269
+margin_bottom = 263.232
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "17"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label23" type="Label" parent="hud/labels"]
+margin_left = 195.027
+margin_top = 243.043
+margin_right = 207.027
+margin_bottom = 263.043
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "18"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label24" type="Label" parent="hud/labels"]
+margin_left = 240.446
+margin_top = 242.449
+margin_right = 264.446
+margin_bottom = 262.449
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label25" type="Label" parent="hud/labels"]
+margin_left = 294.608
+margin_top = 242.595
+margin_right = 306.608
+margin_bottom = 262.595
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "19"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label26" type="Label" parent="hud/labels"]
+margin_left = 345.065
+margin_top = 242.694
+margin_right = 357.065
+margin_bottom = 262.694
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "20"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label27" type="Label" parent="hud/labels"]
+margin_left = 395.377
+margin_top = 242.273
+margin_right = 407.377
+margin_bottom = 262.273
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "21"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label28" type="Label" parent="hud/labels"]
+margin_left = 441.082
+margin_top = 243.379
+margin_right = 465.082
+margin_bottom = 263.379
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label29" type="Label" parent="hud/labels"]
+margin_left = 495.272
+margin_top = 242.949
+margin_right = 507.272
+margin_bottom = 262.949
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "22"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label30" type="Label" parent="hud/labels"]
+margin_left = 539.604
+margin_top = 242.919
+margin_right = 563.605
+margin_bottom = 262.919
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "boss"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="lock_stage" type="Node2D" parent="hud"]
+z_index = 2
+
+[node name="false1" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 55, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false2" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 100, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false3" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 145, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false4" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 190, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false5" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 235, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false6" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 280, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false7" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 325, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false8" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 370, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false9" type="AnimatedSprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 415, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false10" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 460, 63 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false11" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 55.561, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false12" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 100, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 9
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false13" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 145, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 9
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false14" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 190, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 9
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false15" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 235, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 8
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false16" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 280, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 8
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false17" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 325, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 8
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false18" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 370, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 7
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false19" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 415, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 7
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false20" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 460, 108 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 6
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false21" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 56.047, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 6
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false22" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 100, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 6
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false23" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 145, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 6
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false24" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 190, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 6
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false25" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 235, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 5
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false26" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 280, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 5
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false27" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 325, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 5
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false28" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 370, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 4
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false29" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 415, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 4
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false30" type="AnimatedSprite" parent="hud/lock_stage"]
+position = Vector2( 460, 153 )
+scale = Vector2( 0.09, 0.09 )
+z_index = 2
+frames = SubResource( 6 )
+frame = 3
+playing = true
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="false_mundo2" type="Sprite" parent="hud/lock_stage"]
+visible = false
+position = Vector2( 187.893, -619.936 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 18 )
+
+[node name="fases_list" type="Node2D" parent="hud"]
+position = Vector2( 29.9662, -32.9627 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="tutorial" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 303.834
+margin_top = 238.006
+margin_right = 711.834
+margin_bottom = 612.006
+rect_scale = Vector2( 0.08, 0.08 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fase_1" type="TextureButton" parent="hud/fases_list"]
+margin_left = 10.0
+margin_top = 88.668
+margin_right = 418.0
+margin_bottom = 462.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_2" type="TextureButton" parent="hud/fases_list"]
+margin_left = 60.0
+margin_top = 88.058
+margin_right = 468.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_3" type="TextureButton" parent="hud/fases_list"]
+margin_left = 110.0
+margin_top = 88.058
+margin_right = 518.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_4" type="TextureButton" parent="hud/fases_list"]
+margin_left = 160.0
+margin_top = 88.058
+margin_right = 568.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_5" type="TextureButton" parent="hud/fases_list"]
+margin_left = 210.0
+margin_top = 88.058
+margin_right = 618.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_6" type="TextureButton" parent="hud/fases_list"]
+margin_left = 260.0
+margin_top = 88.058
+margin_right = 668.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_7" type="TextureButton" parent="hud/fases_list"]
+margin_left = 310.0
+margin_top = 88.058
+margin_right = 718.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_8" type="TextureButton" parent="hud/fases_list"]
+margin_left = 360.0
+margin_top = 88.058
+margin_right = 768.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_9" type="TextureButton" parent="hud/fases_list"]
+margin_left = 410.0
+margin_top = 88.058
+margin_right = 818.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_10" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 460.0
+margin_top = 88.058
+margin_right = 868.0
+margin_bottom = 462.058
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_11" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 10.0
+margin_top = 138.668
+margin_right = 418.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_12" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 60.0
+margin_top = 138.668
+margin_right = 468.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_13" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 110.0
+margin_top = 138.668
+margin_right = 518.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_14" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 160.0
+margin_top = 138.668
+margin_right = 568.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_15" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 210.0
+margin_top = 138.668
+margin_right = 618.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_16" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 260.0
+margin_top = 138.668
+margin_right = 668.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_17" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 310.0
+margin_top = 138.668
+margin_right = 718.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_18" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 360.0
+margin_top = 138.668
+margin_right = 768.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_19" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 410.0
+margin_top = 138.668
+margin_right = 818.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_20" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 460.0
+margin_top = 138.668
+margin_right = 868.0
+margin_bottom = 512.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_21" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 10.0
+margin_top = 188.668
+margin_right = 418.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_22" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 60.0
+margin_top = 188.668
+margin_right = 468.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_23" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 110.0
+margin_top = 188.668
+margin_right = 518.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_24" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 160.0
+margin_top = 188.668
+margin_right = 568.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_25" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 210.0
+margin_top = 188.668
+margin_right = 618.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_26" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 260.0
+margin_top = 188.668
+margin_right = 668.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_27" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 310.0
+margin_top = 188.668
+margin_right = 718.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_28" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 360.0
+margin_top = 188.668
+margin_right = 768.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_29" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 410.0
+margin_top = 188.668
+margin_right = 824.932
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fase_30" type="TextureButton" parent="hud/fases_list"]
+visible = false
+margin_left = 460.0
+margin_top = 188.668
+margin_right = 868.0
+margin_bottom = 562.668
+rect_scale = Vector2( 0.09, 0.09 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="buttondown" type="Node2D" parent="hud"]
+position = Vector2( -6.5, 210 )
+
+[node name="back" type="TextureButton" parent="hud/buttondown"]
+margin_left = 315.915
+margin_top = -33.02
+margin_right = 766.916
+margin_bottom = 126.98
+rect_scale = Vector2( 0.1, 0.2 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back2" type="Label" parent="hud/buttondown"]
+margin_left = 326.796
+margin_top = -24.4899
+margin_right = 352.796
+margin_bottom = -9.48994
+custom_fonts/font = SubResource( 7 )
+text = "back"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="config" type="TextureButton" parent="hud/buttondown"]
+margin_left = 166.52
+margin_top = -32.2781
+margin_right = 617.52
+margin_bottom = 127.722
+rect_scale = Vector2( 0.1, 0.2 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="config2" type="Label" parent="hud/buttondown"]
+margin_left = 172.944
+margin_top = -23.4788
+margin_right = 214.944
+margin_bottom = -8.47884
+custom_fonts/font = SubResource( 8 )
+text = "settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shop" type="TextureButton" parent="hud/buttondown"]
+visible = false
+margin_left = 106.03
+margin_top = 243.717
+margin_right = 557.03
+margin_bottom = 403.717
+rect_scale = Vector2( 0.1, 0.2 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shop2" type="Label" parent="hud/buttondown"]
+visible = false
+margin_left = 109.11
+margin_top = 252.663
+margin_right = 150.11
+margin_bottom = 267.663
+custom_fonts/font = SubResource( 9 )
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 256, 144 )
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="pressed" from="hud/fases_list/fase_1" to="." method="_on_fase_1_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_2" to="." method="_on_fase_2_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_3" to="." method="_on_fase_3_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_4" to="." method="_on_fase_4_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_5" to="." method="_on_fase_5_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_6" to="." method="_on_fase_6_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_7" to="." method="_on_fase_7_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_8" to="." method="_on_fase_8_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_9" to="." method="_on_fase_9_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_10" to="." method="_on_fase_10_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_11" to="." method="_on_fase_11_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_12" to="." method="_on_fase_12_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_13" to="." method="_on_fase_13_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_14" to="." method="_on_fase_14_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_15" to="." method="_on_fase_15_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_16" to="." method="_on_fase_16_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_17" to="." method="_on_fase_17_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_18" to="." method="_on_fase_18_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_19" to="." method="_on_fase_19_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_20" to="." method="_on_fase_20_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_21" to="." method="_on_fase_21_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_22" to="." method="_on_fase_22_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_23" to="." method="_on_fase_23_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_24" to="." method="_on_fase_24_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_25" to="." method="_on_fase_25_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_26" to="." method="_on_fase_26_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_27" to="." method="_on_fase_27_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_28" to="." method="_on_fase_28_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_29" to="." method="_on_fase_29_pressed"]
+[connection signal="pressed" from="hud/fases_list/fase_30" to="." method="_on_fase_30_pressed"]
+[connection signal="pressed" from="hud/buttondown/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="hud/buttondown/config" to="." method="_on_config_pressed"]
+[connection signal="pressed" from="hud/buttondown/shop" to="." method="_on_shop_pressed"]

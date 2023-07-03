@@ -1,0 +1,63 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis1.png" type="Texture" id=1]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/caixa_lapis.png" type="Texture" id=2]
+[ext_resource path="res://scripts/inimigos/caixa_de_lapis.gd" type="Script" id=3]
+[ext_resource path="res://scripts/inimigos/lapis.gd" type="Script" id=4]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis3.png" type="Texture" id=5]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis5.png" type="Texture" id=6]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis6.png" type="Texture" id=8]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis8.png" type="Texture" id=9]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis4.png" type="Texture" id=10]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis7.png" type="Texture" id=11]
+[ext_resource path="res://sprites/inimigos/lapis LEGO/lapis9.png" type="Texture" id=12]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.66145
+
+[sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="caixa_de_lapis" type="StaticBody2D"]
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 3 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 2 )
+
+[node name="mira" type="Position2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="lapis" type="Area2D" parent="."]
+rotation = 1.5708
+collision_mask = 33
+script = ExtResource( 4 )
+
+[node name="shape" type="CollisionShape2D" parent="lapis"]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="lapis"]
+
+[node name="sprite" type="AnimatedSprite" parent="lapis"]
+scale = Vector2( 0.8, 0.8 )
+z_index = -10
+frames = SubResource( 3 )
+frame = 5
+playing = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="lapis" to="lapis" method="_on_bola_de_neve_body_entered"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/powerups e spawners/powerup_laser.gd" type="Script" id=2]
+[ext_resource path="res://sprites/powerups/powerup.png" type="Texture" id=3]
+[ext_resource path="res://sprites/efeitos_jogo/particles_laser.png" type="Texture" id=4]
+
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[node name="powerup_laser" type="Area2D"]
+scale = Vector2( 0.7, 0.7 )
+z_index = 5
+collision_layer = 16
+script = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( -0.375397, 0.15016 )
+scale = Vector2( 0.406398, 0.538794 )
+texture = ExtResource( 3 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="particles" type="CPUParticles2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 2.5
+explosiveness = 0.85
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2( 0, 1 )
+initial_velocity = 100.0
+initial_velocity_random = 0.12
+
+[node name="queue_timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="queue_timer" to="." method="_on_queue_timer_timeout"]

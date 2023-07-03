@@ -1,0 +1,60 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/inimigos/bola_de_neve/bola de neve1.png" type="Texture" id=1]
+[ext_resource path="res://sprites/inimigos/buraco_bola_de_neve.png" type="Texture" id=2]
+[ext_resource path="res://scripts/all_boss/boss3/caixa_de_gelo_boss.gd" type="Script" id=3]
+[ext_resource path="res://scripts/all_boss/boss3/objeto_da_caixa.gd" type="Script" id=4]
+[ext_resource path="res://sprites/inimigos/bola_de_neve/bola de neve4.png" type="Texture" id=5]
+[ext_resource path="res://sprites/inimigos/bola_de_neve/bola de neve5.png" type="Texture" id=6]
+[ext_resource path="res://sprites/inimigos/bola_de_neve/bola de neve6.png" type="Texture" id=7]
+[ext_resource path="res://sprites/inimigos/bola_de_neve/bola de neve3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/inimigos/bola_de_neve/bola de neve2.png" type="Texture" id=9]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.66145
+
+[sub_resource type="CircleShape2D" id=9]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="caixa_de_gelo" type="Area2D"]
+scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 3 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+
+[node name="mira" type="Position2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="objeto" type="Area2D" parent="."]
+collision_mask = 33
+script = ExtResource( 4 )
+
+[node name="shape" type="CollisionShape2D" parent="objeto"]
+shape = SubResource( 9 )
+
+[node name="sprite" type="AnimatedSprite" parent="objeto"]
+position = Vector2( -0.991008, -1.11488 )
+scale = Vector2( 0.7, 0.7 )
+z_index = -10
+frames = SubResource( 10 )
+frame = 5
+playing = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="objeto"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="objeto" to="objeto" method="_on_bola_de_neve_body_entered"]

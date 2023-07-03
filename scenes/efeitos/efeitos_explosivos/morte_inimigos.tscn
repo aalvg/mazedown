@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/efeitos/morte_inimigos.gd" type="Script" id=1]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/marrom/1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/marrom/4.png" type="Texture" id=3]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/marrom/2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/marrom/5.png" type="Texture" id=5]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/marrom/3.png" type="Texture" id=6]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/marrom/6.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "sprite"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 7 ), null ]
+}
+
+[node name="morte_inimigo" type="Sprite"]
+scale = Vector2( 0.25, 0.25 )
+z_index = 5
+texture = ExtResource( 7 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/sprite = SubResource( 1 )

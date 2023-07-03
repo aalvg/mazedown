@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/efeitos/moeda.gd" type="Script" id=1]
+[ext_resource path="res://sprites/moedas/moeda_besouro3.png" type="Texture" id=2]
+[ext_resource path="res://sprites/moedas/moeda_besouro1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/moedas/moeda_besouro2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/moedas/moeda_besouro4.png" type="Texture" id=5]
+[ext_resource path="res://efeitos_luzes_neon/assets - Copia/light.png" type="Texture" id=6]
+[ext_resource path="res://sprites/moedas/particles_besouro.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 7.98792
+height = 9.24982
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00961539, 0.0909091 ), 0.0, 2.00909, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="moeda_no_spawner" type="Area2D"]
+scale = Vector2( 0.25, 0.25 )
+z_index = 4
+collision_layer = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 2 )
+
+[node name="queue_timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="particles" type="CPUParticles2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+emitting = false
+amount = 12
+one_shot = true
+speed_scale = 2.5
+explosiveness = 0.3
+randomness = 0.24
+texture = ExtResource( 12 )
+spread = 180.0
+gravity = Vector2( 0, 1 )
+initial_velocity = 117.24
+initial_velocity_random = 0.24
+scale_amount_curve = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 6 )
+texture_scale = 0.2
+color = Color( 1, 0.72549, 0, 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_moeda_no_spawner_body_entered"]
+[connection signal="timeout" from="queue_timer" to="." method="_on_queue_timer_timeout"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

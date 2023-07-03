@@ -1,0 +1,131 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss10.png" type="Texture" id=1]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss16.png" type="Texture" id=2]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss3.png" type="Texture" id=3]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss15.png" type="Texture" id=4]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss2.png" type="Texture" id=5]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss6.png" type="Texture" id=6]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss5.png" type="Texture" id=7]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss11.png" type="Texture" id=8]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss7.png" type="Texture" id=9]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss4.png" type="Texture" id=10]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss18.png" type="Texture" id=11]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss9.png" type="Texture" id=12]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss13.png" type="Texture" id=13]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss17.png" type="Texture" id=14]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss12.png" type="Texture" id=15]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss8.png" type="Texture" id=16]
+[ext_resource path="res://sprites/inimigos/all_boss/boss02/boss14.png" type="Texture" id=17]
+[ext_resource path="res://scenes/inimigos/olho_parede.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scripts/all_boss/boss2/boss2.gd" type="Script" id=20]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 125.344, 20.8494 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 14 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 119.251, 22.9392 )
+
+[node name="boss2" type="KinematicBody2D"]
+scale = Vector2( 0.9, 0.9 )
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_vertical_guides_": [ -109.0, 109.0 ]
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+frame = 2
+playing = true
+
+[node name="olhos" type="Node2D" parent="."]
+
+[node name="olho_parede" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -1.94454, 9.89949 )
+
+[node name="olho_medio" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -59.7682, 4.89332 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="olho_medio2" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( 55.177, 12.9762 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="olho_pequeno" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( 76.4648, -5.16603 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="olho_pequeno2" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -23.4396, -10.8083 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="olho_pequeno3" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( 31.0042, -11.1549 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="olho_pequeno4" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -82.8546, 7.75031 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="olho_mini" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -43.9107, -7.20575 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="olho_mini2" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( 4.38291, -12.67 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="olho_mini3" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( 27.3542, 12.2116 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="olho_mini6" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( 55.8977, -6.93346 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="olho_mini4" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -36.3199, 12.4548 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="olho_mini5" parent="olhos" instance=ExtResource( 18 )]
+modulate = Color( 0.496094, 0.496094, 0.496094, 1 )
+position = Vector2( -72.3586, -6.96402 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="tempo_irismini" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="dano_no_player" type="Area2D" parent="."]
+visible = false
+
+[node name="shape" type="CollisionShape2D" parent="dano_no_player"]
+position = Vector2( -1.48483, -6.43427 )
+shape = SubResource( 3 )
+[connection signal="timeout" from="tempo_irismini" to="." method="_on_tempo_irismini_timeout"]
+[connection signal="body_entered" from="dano_no_player" to="." method="_on_dano_no_player_body_entered"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/bau_ouro.gd" type="Script" id=1]
+[ext_resource path="res://sprites/moedas/bau/baur_ouro3.png" type="Texture" id=2]
+[ext_resource path="res://sprites/moedas/bau/baur_ouro4.png" type="Texture" id=3]
+[ext_resource path="res://sprites/moedas/bau/baur_ouro1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/moedas/bau/baur_ouro6.png" type="Texture" id=5]
+[ext_resource path="res://sprites/moedas/bau/baur_ouro2.png" type="Texture" id=6]
+[ext_resource path="res://sprites/moedas/bau/baur_ouro5.png" type="Texture" id=7]
+[ext_resource path="res://sprites/moedas/bau/particles_bau.png" type="Texture" id=8]
+
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 7.98792
+height = 9.24982
+
+[node name="bau_ouro" type="Area2D"]
+z_index = 4
+collision_layer = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.4, 0.4 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 2 )
+
+[node name="queue_timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="particles" type="CPUParticles2D" parent="."]
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 2.5
+explosiveness = 0.85
+texture = ExtResource( 8 )
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2( 0, 1 )
+initial_velocity = 100.0
+initial_velocity_random = 0.12
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_moeda_no_spawner_body_entered"]
+[connection signal="timeout" from="queue_timer" to="." method="_on_queue_timer_timeout"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

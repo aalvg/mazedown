@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/inimigos/morcego.gd" type="Script" id=1]
+[ext_resource path="res://sprites/inimigos/morcego/morcego1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/efeitos_jogo/2DLight.png" type="Texture" id=3]
+[ext_resource path="res://sprites/inimigos/morcego/morcego2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/inimigos/morcego/morcego4.png" type="Texture" id=12]
+[ext_resource path="res://sprites/inimigos/morcego/morcego3.png" type="Texture" id=20]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.53627, 12.7665 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11.159, 13.0759 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 62.7972, 33.6021 )
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotacao/sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.678431 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 20 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[node name="morcego" type="KinematicBody2D"]
+z_index = 6
+collision_layer = 2
+collision_mask = 73
+script = ExtResource( 1 )
+vel = 30
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="helicoptero" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="shape" type="CollisionShape2D" parent="helicoptero"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="sensor" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="sensor"]
+visible = false
+position = Vector2( -2.47629, 1.85599 )
+shape = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rotation = -0.00416541
+z_index = 5
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/dano = SubResource( 4 )
+
+[node name="rotacao" type="Node2D" parent="."]
+
+[node name="sprite" type="AnimatedSprite" parent="rotacao"]
+position = Vector2( 1.7148, 0.491096 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
+playing = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.2
+color = Color( 0, 1, 0.764706, 1 )
+energy = 2.0
+shadow_enabled = true
+shadow_gradient_length = 100.0
+shadow_filter_smooth = 50.0
+
+[connection signal="body_entered" from="helicoptero" to="." method="_on_helicoptero_body_entered"]
+[connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
+[connection signal="body_exited" from="sensor" to="." method="_on_sensor_body_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

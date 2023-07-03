@@ -1,0 +1,143 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/inimigos/80s/furadeira/furadeira3.png" type="Texture" id=1]
+[ext_resource path="res://scripts/inimigos/furadeira.gd" type="Script" id=2]
+[ext_resource path="res://sprites/inimigos/80s/furadeira/furadeira1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/inimigos/80s/furadeira/furadeira2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/inimigos/80s/furadeira/furadeira4.png" type="Texture" id=5]
+[ext_resource path="res://sprites/efeitos_jogo/dano1.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.617, 5.46368 )
+
+[sub_resource type="Animation" id=2]
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotacao/sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotacao/sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.678431 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 15.3313, 7.59486 )
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 3.77
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.0232558, 0.0727272 ), 0.0, 0.0, 0, 0, Vector2( 0.412791, 0.385227 ), 0.864115, 0.864115, 0, 0, Vector2( 1, 0.585227 ), 0.0, 0.0, 0, 0 ]
+
+[node name="furadeira" type="KinematicBody2D"]
+position = Vector2( 99, 40 )
+scale = Vector2( 0.7, 0.7 )
+z_index = 5
+collision_layer = 2
+collision_mask = 105
+script = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 32
+position = Vector2( -2.89387, 5.87253 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.574524, 0.928074 )
+scale = Vector2( 0.535961, 0.429895 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/gosma_andando = SubResource( 2 )
+anims/planeta_rosa = SubResource( 3 )
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2( -7.71693, 2.66585 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 64
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="."]
+position = Vector2( 7.43631, 1.96431 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 64
+
+[node name="PlatformDetector" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="colidir_com_player" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="colidir_com_player"]
+visible = false
+position = Vector2( -2.75003, 5.42575 )
+shape = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="rotacao" type="Node2D" parent="."]
+
+[node name="colidir_blocos" type="Area2D" parent="rotacao"]
+position = Vector2( 18.9479, 4.53818 )
+scale = Vector2( 1, 1 )
+
+[node name="shape" type="CollisionShape2D" parent="rotacao/colidir_blocos"]
+shape = SubResource( 7 )
+
+[node name="sprite" type="Sprite" parent="rotacao"]
+position = Vector2( 1.80725, 5.1529 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 20, 32 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="rotacao"]
+position = Vector2( 15.4573, 4.21767 )
+scale = Vector2( 0.15, 0.15 )
+z_index = -1
+emitting = false
+amount = 20
+lifetime = 0.3
+explosiveness = 0.2
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 2 )
+spread = 70.0
+gravity = Vector2( 1, 1 )
+initial_velocity = 200.0
+initial_velocity_random = 0.12
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+angle = 5.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 6 )
+
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="body_entered" from="colidir_com_player" to="." method="_on_enemy_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="rotacao/colidir_blocos" to="." method="_on_colidir_blocos_area_entered"]
+[connection signal="body_entered" from="rotacao/colidir_blocos" to="." method="_on_colidir_blocos_body_entered"]

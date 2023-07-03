@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/5787cd716fd8256fab62e3fff850897a-11 (3).png-bff74f2e71825bbcf2fd16bd830f2ffe.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://sprites/it io assets/PixelWhale_SF_Project/Character/5787cd716fd8256fab62e3fff850897a-11 (3).png"
+dest_files=[ "res://.import/5787cd716fd8256fab62e3fff850897a-11 (3).png-bff74f2e71825bbcf2fd16bd830f2ffe.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

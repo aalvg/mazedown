@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://sprites/inimigos/80s/olho_neon/materials/shader/magic_single_tex.shader" type="Shader" id=1]
+[ext_resource path="res://scripts/inimigos/gosma_parede_marrom.gd" type="Script" id=2]
+[ext_resource path="res://sprites/inimigos/flecha_yaka/6.png" type="Texture" id=3]
+[ext_resource path="res://sprites/inimigos/flecha_yaka/5.png" type="Texture" id=4]
+[ext_resource path="res://sprites/inimigos/flecha_yaka/1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/inimigos/80s/olho_neon/materials/Heal.tres" type="Material" id=6]
+[ext_resource path="res://sprites/efeitos_jogo/particles_heart.png" type="Texture" id=7]
+[ext_resource path="res://sprites/inimigos/flecha_yaka/2.png" type="Texture" id=8]
+[ext_resource path="res://sprites/inimigos/80s/olho_neon/materials/textures/magic_masks/particle_cross.png" type="Texture" id=9]
+[ext_resource path="res://sprites/inimigos/flecha_yaka/4.png" type="Texture" id=10]
+[ext_resource path="res://sprites/inimigos/flecha_yaka/3.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 2.81251
+height = 0.535715
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 7.76786
+height = 26.9643
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0.0196078, 0.0136364 ), 0.0, 2.46443, 0, 0, Vector2( 0.95098, 0.0590909 ), 0.263636, 0.0, 0, 0 ]
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 1 )
+shader_param/emission_intensity = 1.5
+shader_param/texture_mask = ExtResource( 9 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 0 ), 0.0, 0.677922, 0, 0, Vector2( 0.245098, 0.0454545 ), -0.73514, 0.0, 0, 0 ]
+
+[node name="flecha_yaka" type="KinematicBody2D"]
+rotation = -1.5708
+scale = Vector2( 0.7, 0.7 )
+z_index = 5
+collision_layer = 2
+collision_mask = 105
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+z_index = 1
+frames = SubResource( 5 )
+frame = 1
+playing = true
+
+[node name="shape" type="CollisionShape2D" parent="."]
+light_mask = 32
+rotation = 5.40014e-13
+scale = Vector2( 0.999998, 0.999998 )
+shape = SubResource( 11 )
+
+[node name="colidir_com_player" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="shape" type="CollisionShape2D" parent="colidir_com_player"]
+light_mask = 32
+rotation = -1.5708
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 6 )
+
+[node name="particulas" type="Node2D" parent="."]
+position = Vector2( -2.07642, -0.283752 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="Heal2D" type="CPUParticles2D" parent="particulas"]
+material = ExtResource( 6 )
+rotation = 2.84217e-13
+scale = Vector2( 0.1, 0.1 )
+lifetime = 0.3
+speed_scale = 0.3
+randomness = 0.1
+local_coords = false
+draw_order = 1
+texture = ExtResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2( 0, 1 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+initial_velocity_random = 1.0
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+linear_accel = 40.0
+angle = 75.0
+angle_random = 1.0
+scale_amount_random = 0.1
+scale_amount_curve = SubResource( 7 )
+color = Color( 0.301961, 0.117647, 0.760784, 1 )
+
+[node name="Cross2D" type="CPUParticles2D" parent="particulas/Heal2D"]
+material = SubResource( 9 )
+rotation = 2.27374e-13
+scale = Vector2( 0.5, 0.5 )
+amount = 3
+lifetime = 0.1
+speed_scale = 0.3
+randomness = 1.0
+local_coords = false
+draw_order = 1
+texture = ExtResource( 9 )
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2( 0, 0 )
+spread = 50.0
+gravity = Vector2( 0, -300 )
+initial_velocity = 60.0
+initial_velocity_random = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+scale_amount = 0.2
+scale_amount_random = 0.1
+scale_amount_curve = SubResource( 10 )
+color = Color( 0.501961, 0.384314, 0.823529, 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rotation = 4.54747e-13
+
+[connection signal="body_entered" from="colidir_com_player" to="." method="_on_colidir_com_player_body_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/efeitos_jogo/dano2.png" type="Texture" id=1]
+[ext_resource path="res://sprites/efeitos_jogo/dano1.png" type="Texture" id=2]
+[ext_resource path="res://scripts/inimigos/laser_enemy.gd" type="Script" id=3]
+[ext_resource path="res://sprites/inimigos/sapo/cuspi.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "explodir"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("self_destruction:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("self_destruction:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("self_destruction:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.509804 ), Color( 1, 1, 1, 0.509804 ) ]
+}
+
+[node name="laser_enemy" type="Area2D"]
+rotation = 3.14159
+scale = Vector2( 0.4, 0.4 )
+collision_layer = 8
+script = ExtResource( 3 )
+
+[node name="sprite" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="vis_notifier" type="VisibilityNotifier2D" parent="."]
+visible = false
+
+[node name="self_destruction" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.509804 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/explodir = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_laser_enemy_body_entered"]

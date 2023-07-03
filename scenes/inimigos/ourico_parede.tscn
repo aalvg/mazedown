@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sprites/inimigos/ourico_fase_neve/ourico_neve2.png" type="Texture" id=1]
+[ext_resource path="res://scripts/inimigos/InimigoDaParede.gd" type="Script" id=2]
+[ext_resource path="res://sprites/inimigos/ourico_fase_neve/ourico_neve1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/inimigos/ourico_fase_neve/ourico_neve6.png" type="Texture" id=4]
+[ext_resource path="res://sprites/inimigos/ourico_fase_neve/ourico_neve5.png" type="Texture" id=5]
+[ext_resource path="res://sprites/inimigos/ourico_fase_neve/ourico_neve4.png" type="Texture" id=6]
+[ext_resource path="res://sprites/inimigos/ourico_fase_neve/ourico_neve3.png" type="Texture" id=7]
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 104.637, 96.0226 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "gosma_nuvem"
+length = 1.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "planeta_rosa"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.678431 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 151.729, 262.072 )
+
+[node name="gosma_parede" type="KinematicBody2D"]
+rotation = 1.5708
+scale = Vector2( 0.05, 0.05 )
+z_index = 5
+collision_layer = 2
+collision_mask = 105
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [ -5.34961, 3.86356 ]
+}
+
+[node name="shape" type="CollisionShape2D" parent="."]
+light_mask = 32
+position = Vector2( 4.58087, 14.0266 )
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.17745, 0.928074 )
+scale = Vector2( 0.360763, 0.429895 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/gosma_nuvem = SubResource( 2 )
+anims/planeta_rosa = SubResource( 3 )
+
+[node name="colidir_com_player" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="shape" type="CollisionShape2D" parent="colidir_com_player"]
+light_mask = 32
+position = Vector2( 4.46338, 67.1909 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="colidir_com_player" to="." method="_on_colidir_com_player_body_entered"]

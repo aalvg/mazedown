@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/efeitos_jogo/textures/particle_examples/offset_glow.png" type="Texture" id=1]
+
+[node name="linha_azul" type="Node2D"]
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 9.28564, 3.64526e-05 )
+rotation = 1.5708
+scale = Vector2( 1, 1.17141 )
+texture = ExtResource( 1 )

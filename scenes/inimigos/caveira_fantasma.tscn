@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/inimigos/caveira_fantasma.gd" type="Script" id=1]
+[ext_resource path="res://sprites/inimigos/caveira_fantasma/caveira_fantasma2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/inimigos/caveira_fantasma/caveira_fantasma4.png" type="Texture" id=3]
+[ext_resource path="res://sprites/inimigos/caveira_fantasma/caveira_fantasma3.png" type="Texture" id=4]
+[ext_resource path="res://sprites/inimigos/caveira_fantasma/caveira_fantasma1.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19.3429, 45.5573 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 49.1504, 23.8453 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 143.694, 83.6498 )
+
+[sub_resource type="Animation" id=5]
+length = 0.2
+
+[node name="caveira_fantasma" type="KinematicBody2D"]
+scale = Vector2( 0.4, 0.4 )
+z_index = 6
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 1 )
+vel = 20
+
+[node name="rotacao" type="Node2D" parent="."]
+
+[node name="sprite" type="AnimatedSprite" parent="rotacao"]
+self_modulate = Color( 1, 1, 1, 0.756863 )
+position = Vector2( 1.7148, 0.491096 )
+scale = Vector2( 1.5, 2 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+flip_h = true
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8.06769 )
+shape = SubResource( 2 )
+
+[node name="caveira" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="shape" type="CollisionShape2D" parent="caveira"]
+position = Vector2( -0.350771, 9.12001 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="sensor" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="sensor"]
+visible = false
+position = Vector2( -0.79259, 42.2646 )
+shape = SubResource( 4 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rotation = -0.00416541
+z_index = 5
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/dano = SubResource( 5 )
+[connection signal="body_entered" from="caveira" to="." method="_on_helicoptero_body_entered"]
+[connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
+[connection signal="body_exited" from="sensor" to="." method="_on_sensor_body_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

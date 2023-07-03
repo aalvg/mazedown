@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/efeitos/morte_inimigos.gd" type="Script" id=1]
+[ext_resource path="res://sprites/efeitos_jogo/efeitos_explosivos/morte_inimigos/esfarelar/esfarelar4.png" type="Texture" id=12]
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/esfarelar7.png-f6f3ee239d447bb4ef1dce512a00d972.stex"
+
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/esfarelar5.png-73842ead3f12cad77d3b49438b44206d.stex"
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/esfarelar6.png-c835e19864e04bbd87502470c9c2bc4f.stex"
+
+[sub_resource type="Animation" id=1]
+resource_name = "sprite"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), SubResource( 3 ), SubResource( 4 ), SubResource( 2 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="esfarelar_inimigo" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
+z_index = 5
+texture = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+direcao = Vector2( -1, 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/sprite = SubResource( 1 )

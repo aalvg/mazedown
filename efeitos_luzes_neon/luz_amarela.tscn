@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://efeitos_luzes_neon/assets - Copia/light.png" type="Texture" id=2]
+[ext_resource path="res://efeitos_luzes_neon/Orb.gd" type="Script" id=3]
+
+[node name="luz_amarela" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+color = Color( 0.956863, 0.768627, 0.0313726, 1 )
+energy = 1.08

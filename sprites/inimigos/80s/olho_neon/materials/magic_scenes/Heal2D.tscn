@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/efeitos_jogo/smoke.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D noise_texture;
+uniform sampler2D texture_mask;
+
+uniform float emission_intensity = 2.0;
+uniform float time_scale = 1.0;
+uniform vec2 texture_scale = vec2(1.0);
+
+
+void fragment() {
+	
+	vec2 base_uv = UV * texture_scale;
+	vec2 time_based_pan = vec2(0.2, 1.0) * (- TIME * time_scale);
+	
+	vec4 mask = texture(texture_mask, UV);
+	vec4 noise = texture(noise_texture, base_uv + time_based_pan);
+	
+	vec4 col = COLOR * mask * noise.r;
+	
+	COLOR = col * emission_intensity;
+	
+	
+}"
+
+[sub_resource type="StreamTexture" id=7]
+load_path = "res://.import/particle_scattered.png-ca43470d5ef9ca7457f839ea4c75b4a4.stex"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 6 )
+shader_param/emission_intensity = 2.0
+shader_param/time_scale = 1.0
+shader_param/texture_scale = Vector2( 1, 1 )
+shader_param/noise_texture = ExtResource( 1 )
+shader_param/texture_mask = SubResource( 7 )
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/circular_mask.png-e51b7775df190a93846a059ae19ffa95.stex"
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.231818 ), 0.0, 2.46443, 0, 0, Vector2( 0.97931, 0.859091 ), 0.263636, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.352459, 0.467213, 1 )
+colors = PoolColorArray( 0.643137, 1, 0, 1, 0, 0.890196, 0, 1, 0, 0.396078, 0.145098, 1, 0.756863, 0.854902, 0.792157, 0 )
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D texture_mask;
+
+uniform float emission_intensity = 2.0;
+
+
+void fragment() {
+	
+	vec4 mask = texture(texture_mask, UV);
+	vec4 col = COLOR * mask;
+	
+	COLOR = col * emission_intensity;
+}"
+
+[sub_resource type="StreamTexture" id=11]
+flags = 4
+load_path = "res://.import/particle_cross.png-e869d067f47031397ea8a323a69db6dc.stex"
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = SubResource( 10 )
+shader_param/emission_intensity = 1.5
+shader_param/texture_mask = SubResource( 11 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.00689656, 0 ), 0.0, 0.677922, 0, 0, Vector2( 1, 0.165909 ), -0.73514, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.204918, 0.770492, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.454485, 0.145203, 0.953125, 1, 0.440598, 0.197601, 0.683594, 1, 1, 1, 1, 0 )
+
+[node name="particulas" type="Node2D"]
+
+[node name="Heal2D" type="CPUParticles2D" parent="."]
+material = SubResource( 8 )
+position = Vector2( 17.2272, -4.50009 )
+amount = 64
+lifetime = 0.75
+speed_scale = 0.5
+randomness = 0.75
+local_coords = false
+draw_order = 1
+texture = SubResource( 9 )
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_align_y = true
+direction = Vector2( 0, 1 )
+spread = 180.0
+gravity = Vector2( 0, -150 )
+initial_velocity = 250.0
+initial_velocity_random = 1.0
+angular_velocity = 180.0
+angular_velocity_random = 1.0
+linear_accel = 40.0
+angle = 360.0
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
+
+[node name="Cross2D" type="CPUParticles2D" parent="Heal2D"]
+material = SubResource( 1 )
+amount = 16
+lifetime = 1.25
+speed_scale = 0.5
+randomness = 1.0
+local_coords = false
+draw_order = 1
+texture = SubResource( 11 )
+emission_shape = 1
+emission_sphere_radius = 32.0
+spread = 180.0
+gravity = Vector2( 0, -500 )
+initial_velocity = 200.0
+initial_velocity_random = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+scale_amount = 0.2
+scale_amount_random = 0.1
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )

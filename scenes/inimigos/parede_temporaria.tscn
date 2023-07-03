@@ -1,0 +1,92 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://sprites/custom_blac.png" type="Texture" id=1]
+[ext_resource path="res://scripts/inimigos/parede_temporaria.gd" type="Script" id=2]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/3.png" type="Texture" id=4]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/4.png" type="Texture" id=5]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/5.png" type="Texture" id=6]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/6.png" type="Texture" id=8]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/7.png" type="Texture" id=9]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/12.png" type="Texture" id=10]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/15.png" type="Texture" id=13]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/8.png" type="Texture" id=18]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/13.png" type="Texture" id=19]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/21.png" type="Texture" id=20]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/14.png" type="Texture" id=23]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/17.png" type="Texture" id=24]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/20.png" type="Texture" id=26]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/11.png" type="Texture" id=27]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/10.png" type="Texture" id=28]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/9.png" type="Texture" id=29]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/16.png" type="Texture" id=30]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/18.png" type="Texture" id=34]
+[ext_resource path="res://sprites/efeitos_jogo/bola_de_fogo/19.png" type="Texture" id=36]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.96838, 7.46616 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "dano"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../enemy_kamikaze/enemy_kamikaze6:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.678431 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8.07481, 4.06298 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 18 ), ExtResource( 29 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 10 ), ExtResource( 19 ), ExtResource( 23 ), ExtResource( 13 ), ExtResource( 30 ), ExtResource( 24 ), ExtResource( 34 ), ExtResource( 36 ), ExtResource( 26 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="parede_temporaria" type="KinematicBody2D"]
+z_index = 5
+collision_layer = 66
+collision_mask = 9
+script = ExtResource( 2 )
+sprite = 1
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.36899, -0.777797 )
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0.39772, -0.238636 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 224, 16, 16 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/dano = SubResource( 2 )
+
+[node name="se_player_pisar" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="se_player_pisar"]
+visible = false
+position = Vector2( 0.315338, -6.20161 )
+shape = SubResource( 3 )
+
+[node name="spt" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -1.35883, -2.14911 )
+scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+frame = 1
+[connection signal="body_entered" from="se_player_pisar" to="." method="_on_se_player_pisar_body_entered"]

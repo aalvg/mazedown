@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://sprites/efeitos_jogo/textures/256/spotlight_6.png" type="Texture" id=1]
+[ext_resource path="res://scripts/powerups e spawners/powerup_armor.gd" type="Script" id=2]
+[ext_resource path="res://sprites/powerups/powerup_armor.png" type="Texture" id=3]
+[ext_resource path="res://sprites/efeitos_jogo/particles_heart.png" type="Texture" id=4]
+[ext_resource path="res://sprites/powerups/powerup_armor2.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.0590909 ), 0.0, 2.17455, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[node name="powerup_armor" type="Area2D"]
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 16
+collision_mask = 65
+script = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.779029, 0.767981 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="particles" type="CPUParticles2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+emitting = false
+amount = 12
+one_shot = true
+speed_scale = 2.5
+explosiveness = 0.85
+randomness = 0.21
+texture = ExtResource( 4 )
+spread = 180.0
+gravity = Vector2( 0, 1 )
+initial_velocity = 117.24
+initial_velocity_random = 0.31
+scale_amount_curve = SubResource( 2 )
+
+[node name="queue_timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="sprite_coracao" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.871152, 0.900579 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 1 )
+texture_scale = 0.2
+color = Color( 0, 0.439216, 1, 1 )
+energy = 9.86
+shadow_enabled = true
+shadow_gradient_length = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_powerup_armor_body_exited"]
+[connection signal="timeout" from="queue_timer" to="." method="_on_queue_timer_timeout"]
