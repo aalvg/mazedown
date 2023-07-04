@@ -79,17 +79,21 @@ tracks/1/keys = {
 script = ExtResource( 3 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+visible = false
 position = Vector2( 1, -18 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 1
 frames = SubResource( 4 )
+frame = 3
 playing = true
 
 [node name="fundo" type="AnimatedSprite" parent="."]
+visible = false
 modulate = Color( 0.054902, 0.054902, 0.054902, 0.85098 )
 position = Vector2( 5, -16 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 4 )
+frame = 3
 playing = true
 
 [node name="AttachedParticles" type="CPUParticles2D" parent="."]
@@ -108,7 +112,7 @@ angle = -720.0
 angle_random = 1.0
 scale_amount = 1.5
 scale_amount_curve = SubResource( 2 )
-color = Color( 1, 0.560784, 0, 1 )
+color = Color( 0.984314, 0.423529, 0.423529, 1 )
 hue_variation = 0.02
 hue_variation_random = 1.0
 
@@ -127,7 +131,7 @@ angle = -720.0
 angle_random = 1.0
 scale_amount = 1.5
 scale_amount_curve = SubResource( 3 )
-color = Color( 1, 0.258824, 0, 1 )
+color = Color( 0.988235, 0.0431373, 0.0431373, 1 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( -0.499996, -53.5 )
