@@ -14,7 +14,7 @@
 [ext_resource path="res://scenes/inimigos/flecha_yaka.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/powerups_and_spawners/powerup_armor.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/inimigos/caixa_de_madeira.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/inimigos/espinhos.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/inimigos/martelo.tscn" type="PackedScene" id=15]
 [ext_resource path="res://sprites/backgrounds_fases/madeira.png" type="Texture" id=16]
 [ext_resource path="res://scenes/inimigos/inimigos_obj/camera.tscn" type="PackedScene" id=17]
 [ext_resource path="res://sprites/efeitos_jogo/areia/1.png" type="Texture" id=18]
@@ -41,6 +41,7 @@
 [ext_resource path="res://sprites/NPCs/aang/6.png" type="Texture" id=39]
 [ext_resource path="res://sprites/NPCs/aang/9.png" type="Texture" id=40]
 [ext_resource path="res://sprites/NPCs/aang/8.png" type="Texture" id=41]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 13.9478 )

@@ -12,7 +12,8 @@
 [ext_resource path="res://scenes/hud.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/efeitos/vulcao/vulcao.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/all_boss/boss1/boss1.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/inimigos/espinhos.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/inimigos/martelo.tscn" type="PackedScene" id=13]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 13.9478 )

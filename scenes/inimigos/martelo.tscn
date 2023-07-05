@@ -132,5 +132,7 @@ disabled = true
 anims/RESET = SubResource( 5 )
 anims/espinho = SubResource( 3 )
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="body_entered" from="colidir_com_player" to="." method="_on_enemy_body_entered"]
