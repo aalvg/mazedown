@@ -3,9 +3,14 @@ extends EnemyBase
 var velocity = Vector2(0,1)
 const scn_explosion = preload("res://scenes/efeitos/explosion.tscn")
 var tempo = 0
-
+# Defina um atraso aleatório para cada instância
+var delay = rand_range(0, 2.0) # Define um atraso de 0 a 2 segundos
 func _ready():
-	$anim.play("espinho")
+
+
+	# Inicie a animação com o atraso
+	$anim.play("espinho", delay)
+	#$anim.play("espinho")
 	score_value = 1
 	add_to_group("enemy")
 	velocity.x = utils.choose([+velocity.x, -velocity.x])
@@ -17,7 +22,7 @@ func create_explosion():
 
 func _on_VisibilityNotifier2D_screen_entered():
 	$shape.show()
-	$sprite.show()
+	$Sprite.show()
 
 func _on_enemy_body_entered(body):
 	if body.is_in_group("player"):
