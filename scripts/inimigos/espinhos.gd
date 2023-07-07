@@ -26,8 +26,15 @@ func _on_VisibilityNotifier2D_screen_entered():
 
 func _on_enemy_body_entered(body):
 	if body.is_in_group("player"):
+		body.martelada = true
+		if body.martelada:
+			body.tomou_martelada()
 		body.armor -= 1
 		create_explosion()
+		yield(get_tree().create_timer(0.500), "timeout")
+		body.martelada = false
+		if body.martelada == false:
+			body.fim_martelada()
 
 func _on_Timer_timeout():
 	#position.y = position.y-3

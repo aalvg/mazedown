@@ -1,19 +1,15 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/Player-export.png" type="Texture" id=2]
 [ext_resource path="res://sprites/player/die.png" type="Texture" id=3]
-[ext_resource path="res://sprites/efeitos_jogo/textures/1024/spotlight_3.png" type="Texture" id=4]
-[ext_resource path="res://sprites/efeitos_jogo/textures/1024/spotlight_8.png" type="Texture" id=5]
+[ext_resource path="res://sprites/player/player_martelo.png" type="Texture" id=4]
 [ext_resource path="res://sprites/efeitos_jogo/rectangle.png" type="Texture" id=6]
 [ext_resource path="res://scenes/player/energia_laser.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sprites/player/painel_da_barra.png" type="Texture" id=8]
 [ext_resource path="res://sprites/player/painel_da_barra_sup.png" type="Texture" id=9]
 [ext_resource path="res://fonts/BebasNeue-Regular.otf" type="DynamicFontData" id=10]
 [ext_resource path="res://scripts/hud/camera.gd" type="Script" id=11]
-[ext_resource path="res://sprites/efeitos_jogo/textures/1024/spotlight_2.png" type="Texture" id=12]
-[ext_resource path="res://sprites/efeitos_jogo/2DLight.png" type="Texture" id=13]
-[ext_resource path="res://sprites/efeitos_jogo/textures/256/spotlight_2.png" type="Texture" id=14]
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -112,7 +108,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "morte"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("morte:frame")
 tracks/0/interp = 1
@@ -172,6 +168,21 @@ tracks/1/keys = {
 "values": [ 4, 5 ]
 }
 
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0.309804 ) ]
+}
+
 [sub_resource type="Animation" id=8]
 length = 0.3
 tracks/0/type = "value"
@@ -184,18 +195,18 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 0 ) ]
+"values": [ Color( 1, 0, 0, 0.309804 ), Color( 1, 0, 0, 0 ) ]
 }
 
 [sub_resource type="DynamicFont" id=9]
 size = 7
 font_data = ExtResource( 10 )
 
-[node name="player" type="KinematicBody2D" groups=["ship"]]
+[node name="player" type="KinematicBody2D" groups=["player", "ship"]]
 position = Vector2( -1.055, 0 )
 scale = Vector2( 0.6, 0.6 )
 z_index = -1
-collision_mask = 70
+collision_mask = 246
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
@@ -236,7 +247,12 @@ visible = false
 position = Vector2( -3.41609, -41.7927 )
 texture = ExtResource( 3 )
 hframes = 3
-frame = 1
+frame = 2
+
+[node name="player_martelo" type="Sprite" parent="rotacao"]
+visible = false
+position = Vector2( -3.24167, -40 )
+texture = ExtResource( 4 )
 
 [node name="anim" type="AnimationPlayer" parent="rotacao"]
 anims/RESET = SubResource( 10 )
@@ -247,117 +263,6 @@ anims/disparo_45g = SubResource( 4 )
 anims/morte = SubResource( 5 )
 anims/parado = SubResource( 6 )
 anims/pulando = SubResource( 7 )
-
-[node name="luzes" type="Node2D" parent="rotacao"]
-
-[node name="azul_olho" type="Light2D" parent="rotacao/luzes"]
-position = Vector2( 8.425, -35 )
-texture = ExtResource( 14 )
-texture_scale = 0.03
-energy = 3.0
-shadow_enabled = true
-shadow_color = Color( 0.745098, 0.494118, 0.494118, 0 )
-shadow_gradient_length = 0.1
-shadow_filter_smooth = 64.0
-
-[node name="azul_olho2" type="Light2D" parent="rotacao/luzes"]
-position = Vector2( -1.575, -35 )
-texture = ExtResource( 14 )
-texture_scale = 0.03
-energy = 3.0
-shadow_enabled = true
-shadow_color = Color( 0.745098, 0.494118, 0.494118, 0 )
-shadow_gradient_length = 0.1
-shadow_filter_smooth = 64.0
-
-[node name="geral" type="Light2D" parent="rotacao/luzes"]
-position = Vector2( 1.75833, -38.3333 )
-texture = ExtResource( 13 )
-texture_scale = 0.15
-energy = 0.8
-shadow_enabled = true
-shadow_gradient_length = 5.0
-shadow_filter = 2
-shadow_filter_smooth = 30.0
-
-[node name="geral_sombra" type="Light2D" parent="rotacao/luzes"]
-position = Vector2( 1.75833, -38.3333 )
-texture = ExtResource( 13 )
-texture_scale = 0.15
-color = Color( 0.992157, 0.992157, 0.992157, 1 )
-energy = 0.5
-
-[node name="rosa" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -13.2417, -41.6667 )
-texture = ExtResource( 5 )
-texture_scale = 0.03
-color = Color( 0.498039, 0.0352941, 0.580392, 1 )
-energy = 3.0
-
-[node name="rosa_braco" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -3.24166, -41.6667 )
-texture = ExtResource( 12 )
-texture_scale = 0.03
-color = Color( 0.737255, 0, 0.870588, 1 )
-energy = 2.0
-
-[node name="rosa_braco3" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -14.9083, -25 )
-texture = ExtResource( 12 )
-texture_scale = 0.03
-color = Color( 0.737255, 0, 0.870588, 1 )
-energy = 2.0
-
-[node name="rosa_braco2" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -23.2417, -21.6667 )
-texture = ExtResource( 12 )
-texture_scale = 0.03
-color = Color( 0.737255, 0, 0.870588, 1 )
-energy = 5.0
-
-[node name="vermelho" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -11.575, -11.6667 )
-texture = ExtResource( 4 )
-texture_scale = 0.03
-color = Color( 0.741176, 0.0235294, 0.0235294, 1 )
-energy = 5.0
-
-[node name="vermelho2" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( 0.0916691, -10 )
-texture = ExtResource( 4 )
-texture_scale = 0.03
-color = Color( 0.741176, 0.0235294, 0.0235294, 1 )
-energy = 3.0
-
-[node name="vermelho3" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -8.24167, -15 )
-texture = ExtResource( 4 )
-texture_scale = 0.03
-color = Color( 0.741176, 0.0235294, 0.0235294, 1 )
-energy = 3.0
-
-[node name="amarelo" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( -16.575, -16.6667 )
-texture = ExtResource( 4 )
-texture_scale = 0.03
-color = Color( 0.862745, 0.588235, 0.254902, 1 )
-energy = 5.0
-
-[node name="amarelo2" type="Light2D" parent="rotacao/luzes"]
-visible = false
-position = Vector2( 0.0916667, -46.6667 )
-texture = ExtResource( 4 )
-texture_scale = 0.03
-color = Color( 1, 1, 0.996078, 1 )
-energy = 5.0
 
 [node name="tempo_tiro" type="Timer" parent="."]
 wait_time = 0.4
@@ -372,7 +277,8 @@ smoothing_speed = 2.0
 script = ExtResource( 11 )
 
 [node name="flash" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 0 )
+visible = false
+modulate = Color( 1, 0, 0, 0.309804 )
 position = Vector2( -655.481, -356.774 )
 scale = Vector2( 43.9913, 23.5255 )
 z_index = 15
@@ -380,6 +286,7 @@ texture = ExtResource( 6 )
 centered = false
 
 [node name="anim" type="AnimationPlayer" parent="flash"]
+anims/RESET = SubResource( 11 )
 anims/fade_out = SubResource( 8 )
 
 [node name="canvas" type="CanvasLayer" parent="."]

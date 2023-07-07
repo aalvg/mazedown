@@ -1,6 +1,8 @@
 extends EnemyBase
 
-export var armor = 1 setget set_armor
+export var armor = 3 setget set_armor
+var barra_de_vida = 3
+var max_barra = 3
 const scn_morte_inimigo = preload("res://scenes/efeitos/efeitos_explosivos/morte_inimigos.tscn")
 
 enum State {
@@ -19,13 +21,14 @@ export var dir = Vector2(50, 350.0)
 
 
 func _ready():
+	$barraVida.max_value = max_barra
 	$anim.play("gosma_andando")
 	score_value = 1
 	add_to_group("enemy")
 	vel_inicial.x = dir.x
 
 func _physics_process(_delta):
-
+	$barraVida.value = barra_de_vida
 	#vel_inicial.y  * delta
 	if not floor_detector_left.is_colliding():
 		vel_inicial.x = dir.x

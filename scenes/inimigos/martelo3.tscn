@@ -95,7 +95,7 @@ tracks/2/keys = {
 "values": [ true, true, false, false, true, true ]
 }
 
-[node name="espinho" type="KinematicBody2D"]
+[node name="espinho" type="KinematicBody2D" groups=["martelo"]]
 z_index = -20
 collision_layer = 128
 script = ExtResource( 2 )

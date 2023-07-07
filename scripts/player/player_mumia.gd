@@ -15,9 +15,5 @@ func _physics_process(delta):
 ########## codigo mumia #######################
 
 func virar_mumia():
-	if player_mumia == true:
-		$rotacao/luzes.hide()
-	if player_mumia == false:
-		$rotacao/luzes.show()
 		sprite = 0
 		velocidade_de_mov_hor = 100

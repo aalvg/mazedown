@@ -56,12 +56,17 @@ func _on_laser_ship_body_entered(_body):
 		_body.armor -= 1
 		criar_explosao_parede()
 		queue_free()
+		
 func _on_laser_ship_enemy_entered(body):
 	if body.is_in_group("enemy"):    
 		body.armor -= 1
-		create_flare_tiro()
+		body.barra_de_vida -= 1
 		get_tree().call_group("camera", "shake", 1 , 0.3) #3 , 0.3 intensidade e depois tempo
-		queue_free()
+		criar_explosao_parede()
+		if body.armor == 0:		
+			create_flare_tiro()
+			yield(get_tree().create_timer(1.0), "timeout")
+			queue_free()
 
 	if body.is_in_group("paredes"):
 		queue_free()
